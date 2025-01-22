@@ -1,0 +1,44 @@
+.main-container{
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.container-acc{
+    display: flex;
+    justify-content: end;
+}
+
+.btn{
+   margin: 0.5rem;
+   width: 5.5rem;
+   height: 3rem;
+   font-size: 1rem;
+   border-radius: 10px;
+   border: 1px solid white;
+   color:#04AA6D; 
+   margin-top: 4rem;
+}
+
+
+.btn-sign-up:hover{
+    background-color:lightblue;
+    color:#04AA6D;
+}
+
+.btn-login:hover{
+
+    background-color:lightblue;
+    color: #04AA6D;
+}
+
+.budget-container{
+    color: white;
+    font-family: sans-serif;
+    margin-left: 10rem;
+    margin-top: 7rem;
+}
+
+h1{
+    font-size: 3rem;
+}
+
