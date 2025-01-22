@@ -20,25 +20,23 @@ function App() {
   const amount = acc[0].amount;
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <NavBar />
-              <div className="budget-container">
-                <h1>My budget</h1>
-                <h1>$ {amount}</h1>
-              </div>
-              <Body />
-            </>
-          }
-        />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <NavBar />
+            <div className="budget-container">
+              <h1>My budget</h1>
+              <h1>$ {amount}</h1>
+            </div>
+            <Body />
+          </>
+        }
+      />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
 }
 
