@@ -8,19 +8,13 @@ import Login from "./Login";
 
 function App() {
   // Main data
-  const [acc, setAcc] = useState([
-    {
-      name: "Slade",
-      password: 1234,
-      amount: 100,
-      data: {},
-    },
-  ]);
+  const [data, setData] = useState([]);
 
-  const amount = acc[0].amount;
+  //const amount = data[0].amount;
 
   return (
     <Routes>
+      {/* Main App */}
       <Route
         path="/"
         element={
@@ -28,13 +22,17 @@ function App() {
             <NavBar />
             <div className="budget-container">
               <h1>My budget</h1>
-              <h1>$ {amount}</h1>
+              <h1>$0</h1>
             </div>
             <Body />
           </>
         }
       />
-      <Route path="/signup" element={<SignUp />} />
+      {/* Route */}
+      <Route
+        path="/signup"
+        element={<SignUp data={data} setData={setData} />}
+      />
       <Route path="/login" element={<Login />} />
     </Routes>
   );
