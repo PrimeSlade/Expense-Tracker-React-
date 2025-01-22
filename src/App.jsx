@@ -1,12 +1,12 @@
 import "./App.css";
-import Body from "./Body";
-import NavBar from "./NavBar";
 import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./NavBar";
+import Body from "./Body";
 import SignUp from "./SignUp";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  //Main data
+  // Main data
   const [acc, setAcc] = useState([
     {
       name: "Slade",
@@ -16,11 +16,27 @@ function App() {
     },
   ]);
 
+  const amount = acc[0].amount;
+
   return (
-    <>
-      <NavBar curAcc={acc} />
-      <Body />
-    </>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <div className="budget-container">
+                <h1>My budget</h1>
+                <h1>$ {amount}</h1>
+              </div>
+              <Body />
+            </>
+          }
+        />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
