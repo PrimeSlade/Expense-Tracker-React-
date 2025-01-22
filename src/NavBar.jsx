@@ -6,7 +6,7 @@ function NavBar() {
   return (
     <div className="main-container">
       <span className="container-acc">
-        <Link to="/">
+        <Link to="/login">
           <button className="btn btn-login">Login</button>
         </Link>
         <Link to="/signup">

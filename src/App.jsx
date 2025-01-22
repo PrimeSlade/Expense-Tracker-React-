@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Body from "./Body";
 import SignUp from "./SignUp";
+import Login from "./Login";
 
 function App() {
   // Main data
@@ -20,12 +21,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Routes>
         <Route
           path="/"
           element={
             <>
+              <NavBar />
               <div className="budget-container">
                 <h1>My budget</h1>
                 <h1>$ {amount}</h1>
@@ -35,6 +36,7 @@ function App() {
           }
         />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
