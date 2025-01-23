@@ -1,52 +1,98 @@
 import "./SignUp.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SignUp(prop) {
   const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState("");
 
-  const [acc, setAcc] = useState({
-    name: "Slade",
-    password: 1234,
-    amount: 100,
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState();
+  const [amount, setAmount] = useState("");
+
+  let acc = {
+    name: name,
+    password: password,
+    amount: +amount,
     data: {},
-  });
+  };
 
   const setData = prop.setData;
 
   const updateData = function () {
-    setData((s) => [...s, acc]);
-  };
+    if (acc.name === "")
+      return alert(
+        "Please ensure that all required fields are completed before proceeding !!!"
+      );
+    if (!isFinite(acc.amount)) return alert("Amount must be number");
 
-  console.log(prop.data);
+    setData((s) => [...s, acc]);
+    alert("Your account has beeen successfully created");
+    setName("");
+    setPassword("");
+    setAmount("");
+  };
 
   const toggle = function () {
     setShowPassword((s) => !s);
   };
 
+  const updateName = function (e) {
+    setName(e.target.value);
+  };
+
+  const updatePssword = function (e) {
+    setPassword(e.target.value);
+  };
+
+  const updateAmount = function (e) {
+    setAmount(e.target.value);
+  };
+
   return (
     <>
-      <div className="main-sign-up-container">
-        <div>
+      <div className="Main-Box">
+        <div className="btn-back-container">
+          <Link to="/">
+            <FontAwesomeIcon icon={faXmark} className="btn-back" />
+          </Link>
+        </div>
+
+        <div className="container">
           <div>Create an account</div>
-          <input type="text" placeholder="Name" />
-          <br />
           <input
-            type={showPassword ? "password" : "text"}
-            placeholder="Password"
-          />
-          <FontAwesomeIcon
-            icon={showPassword ? faEye : faEyeSlash}
-            className="eye"
-            onClick={toggle}
+            type="text"
+            placeholder="Name"
+            onChange={updateName}
+            value={name}
           />
           <br />
-          <input type="text" placeholder="Amount" />
+          <div>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              onChange={updatePssword}
+              value={password}
+            />
+            <FontAwesomeIcon
+              icon={showPassword ? faEye : faEyeSlash}
+              className="eye"
+              onClick={toggle}
+            />
+          </div>
+
+          <input
+            type="text"
+            placeholder="Amount"
+            onChange={updateAmount}
+            value={amount}
+          />
           <br />
-          <button onClick={updateData}>Create</button>
+          <button onClick={updateData} className="btn-create">
+            Create
+          </button>
         </div>
       </div>
     </>
