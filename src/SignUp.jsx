@@ -5,11 +5,11 @@ import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function SignUp(prop) {
+function SignUp({ setData }) {
+  // Destructure prop here
   const [showPassword, setShowPassword] = useState(false);
-
   const [name, setName] = useState("");
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
   const [amount, setAmount] = useState("");
 
   let acc = {
@@ -19,17 +19,15 @@ function SignUp(prop) {
     data: {},
   };
 
-  const setData = prop.setData;
-
   const updateData = function () {
     if (acc.name === "")
       return alert(
         "Please ensure that all required fields are completed before proceeding !!!"
       );
-    if (!isFinite(acc.amount)) return alert("Amount must be number");
+    if (!isFinite(acc.amount)) return alert("Amount must be a number");
 
     setData((s) => [...s, acc]);
-    alert("Your account has beeen successfully created");
+    alert("Your account has been successfully created");
     setName("");
     setPassword("");
     setAmount("");
@@ -43,7 +41,7 @@ function SignUp(prop) {
     setName(e.target.value);
   };
 
-  const updatePssword = function (e) {
+  const updatePassword = function (e) {
     setPassword(e.target.value);
   };
 
@@ -73,7 +71,7 @@ function SignUp(prop) {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
-              onChange={updatePssword}
+              onChange={updatePassword}
               value={password}
             />
             <FontAwesomeIcon
