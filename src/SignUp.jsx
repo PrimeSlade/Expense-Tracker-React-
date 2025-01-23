@@ -26,6 +26,8 @@ function SignUp({ setData }) {
       );
     if (!isFinite(acc.amount)) return alert("Amount must be a number");
 
+    if (amount <= 0) return alert("Amount must be positve !!!");
+
     setData((s) => [...s, acc]);
     alert("Your account has been successfully created");
     setName("");

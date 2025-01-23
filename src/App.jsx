@@ -13,10 +13,6 @@ function App() {
   ]);
   const [currAcc, setCurrAcc] = useState({});
 
-  //const amount = data[0].amount;
-  //console.log(data);
-  console.log(currAcc.name);
-
   return (
     <Routes>
       {/* Main App */}
@@ -24,7 +20,7 @@ function App() {
         path="/"
         element={
           <>
-            <NavBar />
+            <NavBar currAcc={currAcc} />
             <div className="budget-container">
               <h1>My budget</h1>
               <h1>${currAcc.amount || 0}</h1>
