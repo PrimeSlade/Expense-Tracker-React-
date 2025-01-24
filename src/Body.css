@@ -1,47 +1,48 @@
-body{
+body {
     margin: 0;
 }
 
-.main-container-body{
+.main-container-body {
     padding: 0;
     background-color: white;
     border-radius: 60px 60px 0 0;
     height: 1000px;
-
 }
 
-
-.btn-container{
-   display: flex;
-   justify-content:flex-start;
-   margin-left: 10rem;
-   border-radius: 100px;
-   border: 1px solid transparent;
-   padding-top: 6rem;
-
+.btn-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 10rem;
+    padding-top: 2rem;
 }
 
-
-
-.btn-{
-    border: 1px solid white;
+.btn-Today,
+.btn-Month {
+    border: 1px solid black;
     font-size: 1.5rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.btn-Today{
-    border-radius: 100px;
+.btn-Today {
+    border-radius: 100px 0 0 100px;
     background-color: black;
     color: white;
 }
 
-.btn-Today:hover{
-    border-radius: 100px;
+.btn-Today:hover {
     background-color: white;
     color: black;
-    
 }
 
-.btn-Month{
+.btn-Month {
     border-radius: 0 100px 100px 0;
+    background-color: white;
+    color: black;
 }
 
+.btn-Month:hover {
+    background-color: black;
+    color: white;
+}
