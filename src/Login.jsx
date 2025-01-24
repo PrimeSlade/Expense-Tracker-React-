@@ -49,6 +49,13 @@ const Login = ({ data, setCurrAcc }) => {
     }
   };
 
+  //for enter key
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      login();
+    }
+  });
+
   return (
     <>
       <div className="Main-Box">

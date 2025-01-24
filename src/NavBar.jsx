@@ -20,7 +20,7 @@ function NavBar({ currAcc }) {
               <button className="btn btn-login">Login</button>
             </Link>
             <Link to="/signup">
-              <button className="btn btn-signup">Sign Up</button>
+              <button className="btn btn-sign-up">Sign Up</button>
             </Link>
           </>
         ) : (
