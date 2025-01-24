@@ -44,3 +44,19 @@ h1{
 .welcome-text{
     color: white;
 }
+
+.btn-log-out{
+    margin-left: 2rem;
+    width: 5.5rem;
+    height: 3rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid white;
+    color:#04AA6D;
+    margin-top: 8px;
+}
+
+.btn-log-out:hover{
+    background-color:lightblue;
+    color: #04AA6D;
+}

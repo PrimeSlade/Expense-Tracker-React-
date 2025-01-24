@@ -20,7 +20,7 @@ function App() {
         path="/"
         element={
           <>
-            <NavBar currAcc={currAcc} />
+            <NavBar currAcc={currAcc} setCurrAcc={setCurrAcc} />
             <div className="budget-container">
               <h1>My budget</h1>
               <h1>${currAcc.amount || 0}</h1>
