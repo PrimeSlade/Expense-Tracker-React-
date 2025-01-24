@@ -1,0 +1,37 @@
+.date{
+    font-family: sans-serif;
+    color: #0A0A3A;
+    margin-left: 7rem;
+}
+
+.list--container{
+    border: 1px solid white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.item--container{
+    display: flex;
+    justify-content: space-around;
+   
+}
+
+.item-cost{
+    color: orange; /* Text color */
+    text-shadow: 0 0 2px orange;
+}
+
+.items{
+    margin-left: 1rem;
+}
+
+.item-note{
+    width: 80%;
+    font-size: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-left: 100px;
+   
+    
+    
+}

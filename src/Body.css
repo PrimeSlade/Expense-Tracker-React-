@@ -18,7 +18,7 @@ body {
 
 .btn-Today,
 .btn-Month {
-    border: 1px solid black;
+    border: 1px solid #0A0A3A;
     font-size: 1.5rem;
     padding: 10px 20px;
     cursor: pointer;
@@ -27,22 +27,42 @@ body {
 
 .btn-Today {
     border-radius: 100px 0 0 100px;
-    background-color: black;
+    background-color: #0A0A3A;
     color: white;
 }
 
 .btn-Today:hover {
     background-color: white;
-    color: black;
+    color: #0A0A3A;
 }
 
 .btn-Month {
     border-radius: 0 100px 100px 0;
     background-color: white;
-    color: black;
+    color: #0A0A3A;
 }
 
 .btn-Month:hover {
-    background-color: black;
+    background-color: #0A0A3A;
     color: white;
+}
+
+.today-container{
+    display: flex;
+    justify-content: space-evenly ;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.lists{
+   
+    margin-right: 20px;
+    width: 100rem;
+}
+
+.create-list{
+    border: 1px solid black;
+    margin-left: 20px;
+    width: 100rem;
 }

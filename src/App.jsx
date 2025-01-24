@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Body from "./Body";
-import SignUp from "./SignUp";
-import Login from "./Login";
+import SignUp from "./NavBar/SignUp";
+import Login from "./NavBar/Login";
 
 function App() {
   // Main data

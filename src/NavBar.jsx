@@ -43,12 +43,10 @@ function NavBar({ currAcc, setCurrAcc }) {
             </h2>
           </>
         )}
-        {isShow ? (
+        {isShow && (
           <button className="btn-log-out" onClick={logOut}>
             Log out
           </button>
-        ) : (
-          ""
         )}
       </span>
     </div>
