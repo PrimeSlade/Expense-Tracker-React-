@@ -6,14 +6,26 @@
 
 .list--container{
     border: 1px solid white;
-    border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    height: 20rem; /* Fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px; /* Optional: Add some padding */
 }
 
 .item--container{
     display: flex;
     justify-content: space-around;
+
+}
+
+.hr-line{
    
+    width: 80%; /* Keep the width */
+    height: 2px; /* Set a small height for the line */
+    border: 0; /* Remove the default border */
+    background-color:  #00C48C;
+    margin: 10px auto; /* Center the line and add some margin */
+      
 }
 
 .item-cost{

@@ -2,14 +2,28 @@ import "./Body.css";
 import React, { useState, useEffect, useId } from "react";
 import List from "./Body/List";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBowlFood } from "@fortawesome/free-solid-svg-icons";
+import CreateList from "./Body/CreateList";
+import {
+  faBowlFood,
+  faCar,
+  faFilm,
+  faLightbulb,
+  faHome,
+  faHeartbeat,
+  faGraduationCap,
+  faShoppingCart,
+  faPlane,
+  faShieldAlt,
+  faPiggyBank,
+  faChartLine,
+  faGift,
+  faSmile,
+  faEllipsisH,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Body() {
   //for amount
   const [amount, setAmount] = useState("0");
-
-  //for id
-  const id = useId();
 
   //for date
   const [date, setDate] = useState("");
@@ -21,16 +35,8 @@ function Body() {
       note: "Food from KFC",
       cost: 100,
       time: date,
-      font: <FontAwesomeIcon icon={faBowlFood} />,
-      id: id,
-    },
-    {
-      catagory: "Food",
-      note: "Food from KFC",
-      cost: 100,
-      time: date,
-      font: <FontAwesomeIcon icon={faBowlFood} />,
-      id: id,
+      icon: faBowlFood,
+      id: useId(),
     },
   ]);
 
@@ -49,11 +55,13 @@ function Body() {
     "December",
   ];
 
+  console.log(data);
+
   //will render when mounts
   useEffect(() => {
     //calc date
     const today = new Date();
-    const day = today.getDay().toString().padStart(2, "0");
+    const day = today.getDate().toString().padStart(2, "0");
     const month = months[today.getMonth()];
     const year = today.getFullYear();
 
@@ -74,10 +82,7 @@ function Body() {
             <List date={date} data={data} />
           </div>
           <div className="create-list">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ullam
-            dolores, nulla temporibus et corporis debitis sapiente
-            necessitatibus commodi consectetur eum voluptas quam, ipsum repellat
-            cumque? Incidunt qui suscipit corporis!
+            <CreateList setData={setData} months={months} />
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ import Login from "./NavBar/Login";
 function App() {
   // Main data
   const [data, setData] = useState([
-    { name: "Slade", password: "lolsai662", amount: 1000, data: {} },
+    { name: "Slade", password: "lolsai662", amount: 1000, data: [] },
   ]);
   const [currAcc, setCurrAcc] = useState({});
 
