@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./List.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const List = ({ date, data }) => {
+const List = ({ date, tempData }) => {
   const [activeId, setActiveId] = useState();
 
   const toggleNote = function (e) {
@@ -12,18 +12,21 @@ const List = ({ date, data }) => {
     setActiveId((id) => (id === clickedId ? null : clickedId));
   };
 
+  console.log(tempData);
+
   const renderData = () => {
-    if (!data || data.length === 0) {
-      return <div>No data available</div>;
+    if (tempData.length === 0) {
+      return <h2 className="info-text">No data available</h2>;
     }
 
-    return data.map((item, index) => (
+    return tempData.map((item, index) => (
       <div key={index} id={`${item.id}-${index}`} onClick={toggleNote}>
         <div className="item--container">
           <h2>
             <FontAwesomeIcon icon={item.icon} />
             <span className="items">{item.catagory}</span>
           </h2>
+
           <h2 className="item-cost">{item.cost}</h2>
         </div>
         {activeId === `${item.id}-${index}` && ( // Only show note for the active item

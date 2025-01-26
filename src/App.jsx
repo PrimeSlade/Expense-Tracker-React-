@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Body from "./Body";
@@ -11,7 +11,17 @@ function App() {
   const [data, setData] = useState([
     { name: "Slade", password: "lolsai662", amount: 1000, data: [] },
   ]);
+
+  //is login
+  const [isLogin, setIsLogin] = useState(false);
+
   const [currAcc, setCurrAcc] = useState({});
+
+  console.log(data);
+
+  useEffect(() => {
+    setIsLogin((s) => !s);
+  }, [currAcc]);
 
   return (
     <Routes>
@@ -25,7 +35,7 @@ function App() {
               <h1>My budget</h1>
               <h1>${currAcc.amount || 0}</h1>
             </div>
-            <Body />
+            <Body setData={setData} isLogin={isLogin} />
           </>
         }
       />
@@ -42,6 +52,7 @@ function App() {
             setData={setData}
             currAcc={currAcc}
             setCurrAcc={setCurrAcc}
+            setIsLogin={setIsLogin}
           />
         }
       />

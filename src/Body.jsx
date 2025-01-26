@@ -1,7 +1,7 @@
 import "./Body.css";
 import React, { useState, useEffect, useId } from "react";
 import List from "./Body/List";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import CreateList from "./Body/CreateList";
 import {
   faBowlFood,
@@ -21,7 +21,7 @@ import {
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Body() {
+function Body({ setData, isLogin }) {
   //for amount
   const [amount, setAmount] = useState("0");
 
@@ -29,16 +29,13 @@ function Body() {
   const [date, setDate] = useState("");
 
   //for data
-  const [data, setData] = useState([
-    {
-      catagory: "Food",
-      note: "Food from KFC",
-      cost: 100,
-      time: date,
-      icon: faBowlFood,
-      id: useId(),
-    },
-  ]);
+  const [tempData, setTempData] = useState([]);
+
+  useEffect(() => {
+    if (isLogin) {
+      setData((d) => ({ ...d, tempData }));
+    }
+  }, [tempData]);
 
   const months = [
     "January",
@@ -54,8 +51,6 @@ function Body() {
     "November",
     "December",
   ];
-
-  console.log(data);
 
   //will render when mounts
   useEffect(() => {
@@ -79,10 +74,10 @@ function Body() {
         <div className="today-container">
           <div className="lists">
             {/* List */}
-            <List date={date} data={data} />
+            <List date={date} tempData={tempData} />
           </div>
           <div className="create-list">
-            <CreateList setData={setData} months={months} />
+            <CreateList setTempData={setTempData} months={months} />
           </div>
         </div>
       </div>

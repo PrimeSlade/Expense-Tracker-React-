@@ -44,6 +44,12 @@
     margin-bottom: 20px;
     margin-left: 100px;
    
-    
-    
+}
+
+.info-text {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 30vh; /* Full viewport height to center vertically in the viewport */
+    margin: 0 auto;
 }

@@ -10,7 +10,7 @@ import {
   faHeartbeat,
   faGraduationCap,
   faShoppingCart,
-  faPlane,
+  faBook,
   faShieldAlt,
   faPiggyBank,
   faChartLine,
@@ -20,7 +20,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
-const CreateList = ({ setData, months }) => {
+const CreateList = ({ setTempData, months }) => {
   //will render when mounts
 
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -59,7 +59,7 @@ const CreateList = ({ setData, months }) => {
     faHeartbeat,
     faGraduationCap,
     faShoppingCart,
-    faPlane,
+    faBook,
     faShieldAlt,
     faPiggyBank,
     faChartLine,
@@ -74,8 +74,6 @@ const CreateList = ({ setData, months }) => {
     return `${sp[2]} ${months[tempMont]} ${sp[0]}`;
   };
 
-  console.log(inputDate);
-
   const tempData = {
     catagory: selectedCategory,
     note: note,
@@ -85,13 +83,11 @@ const CreateList = ({ setData, months }) => {
     id: useId(),
   };
 
-  console.log(tempData);
-
   const click = function () {
     const isValid = (...e) => e.every((e) => e !== "");
 
     if (isValid(selectedCategory, amount)) {
-      setData((d) => [...d, tempData]);
+      setTempData((d) => [...d, tempData]);
 
       setSelectedCategory("");
       setAmount("");
@@ -137,7 +133,7 @@ const CreateList = ({ setData, months }) => {
     const year = today.getFullYear();
 
     const formatDate = `${year}-${month}-${day}`;
-    console.log(formatDate);
+
     setInputDate(formatDate);
   }, [isClicked]);
 
