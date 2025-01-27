@@ -20,16 +20,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
-const CreateList = ({ setTempData, months }) => {
+const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
   //will render when mounts
+  const [amount, setAmount] = useState(currAcc.amount || 0);
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [inputDate, setInputDate] = useState("");
-  const [amount, setAmount] = useState("");
+  const [inputAmount, setInputAmount] = useState("");
   const [note, setNote] = useState("");
   const [isClicked, setIsClicked] = useState(false);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    setCurrAcc((acc) => ({ ...acc, amount }));
+  }, [amount]);
 
   // List of 15 essential categories
   const categories = [
@@ -77,7 +82,7 @@ const CreateList = ({ setTempData, months }) => {
   const tempData = {
     catagory: selectedCategory,
     note: note,
-    cost: amount,
+    cost: Math.abs(inputAmount),
     time: getTime(),
     icon: fonts[selectedIndex],
     id: useId(),
@@ -88,8 +93,10 @@ const CreateList = ({ setTempData, months }) => {
 
     if (isValid(selectedCategory, amount)) {
       setTempData((d) => [...d, tempData]);
+      setAmount(amount - Math.abs(inputAmount));
+
       setSelectedCategory("");
-      setAmount("");
+      setInputAmount("");
       setNote("");
 
       setIsClicked((s) => !s);
@@ -117,7 +124,7 @@ const CreateList = ({ setTempData, months }) => {
   };
 
   const changeAmount = function (e) {
-    setAmount(e.target.value);
+    setInputAmount(e.target.value);
   };
 
   const changeNote = function (e) {
@@ -163,7 +170,7 @@ const CreateList = ({ setTempData, months }) => {
             type="number"
             className="amount-text"
             ref={inputRef}
-            value={amount}
+            value={inputAmount}
             onChange={changeAmount}
           />
         </h2>
