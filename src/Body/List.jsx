@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./List.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const List = ({ date, tempData }) => {
+const List = ({ date, tempData, setTempData }) => {
   const [activeId, setActiveId] = useState();
 
   const toggleNote = function (e) {
@@ -12,7 +12,10 @@ const List = ({ date, tempData }) => {
     setActiveId((id) => (id === clickedId ? null : clickedId));
   };
 
-  console.log(tempData);
+  const deleteList = function (index) {
+    const selected = tempData.filter((_, i) => i !== index);
+    setTempData(selected);
+  };
 
   const renderData = () => {
     if (tempData.length === 0) {
@@ -29,8 +32,19 @@ const List = ({ date, tempData }) => {
 
           <h2 className="item-cost">{item.cost}</h2>
         </div>
-        {activeId === `${item.id}-${index}` && ( // Only show note for the active item
-          <div className="item-note">Note : {item.note}</div>
+        {activeId === `${item.id}-${index}` && (
+          // Only show note for the active item
+          <>
+            <div className="item-note">Note : {item.note}</div>
+            <button
+              className="delete-btn-list"
+              onClick={() => {
+                deleteList(index);
+              }}
+            >
+              Delete List
+            </button>
+          </>
         )}
         <hr className="hr-line" />
       </div>

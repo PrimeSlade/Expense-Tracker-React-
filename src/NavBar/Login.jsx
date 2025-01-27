@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
-const Login = ({ data, setCurrAcc }) => {
+const Login = ({ data, setCurrAcc, setIsLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState("");
   const [password, setPassword] = useState();
@@ -39,6 +39,8 @@ const Login = ({ data, setCurrAcc }) => {
 
       //Set curr acc
       setCurrAcc(() => currAcc);
+
+      setIsLogin(true);
 
       //Reset input
       setName("");

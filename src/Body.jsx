@@ -1,7 +1,7 @@
 import "./Body.css";
-import React, { useState, useEffect, useId } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { CurrAccContext } from "./App";
 import List from "./Body/List";
-
 import CreateList from "./Body/CreateList";
 import {
   faBowlFood,
@@ -21,7 +21,11 @@ import {
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Body({ setData, isLogin }) {
+function Body({ setData, isLogin, setCurrAcc }) {
+  const { currAcc } = useContext(CurrAccContext);
+  console.log("currACc");
+  console.log(currAcc);
+
   //for amount
   const [amount, setAmount] = useState("0");
 
@@ -29,11 +33,12 @@ function Body({ setData, isLogin }) {
   const [date, setDate] = useState("");
 
   //for data
-  const [tempData, setTempData] = useState([]);
+  const [tempData, setTempData] = useState(currAcc.tempData || []);
 
+  //set main data
   useEffect(() => {
     if (isLogin) {
-      setData((d) => ({ ...d, tempData }));
+      setCurrAcc((acc) => ({ ...acc, tempData }));
     }
   }, [tempData]);
 
@@ -74,7 +79,11 @@ function Body({ setData, isLogin }) {
         <div className="today-container">
           <div className="lists">
             {/* List */}
-            <List date={date} tempData={tempData} />
+            <List
+              date={date}
+              tempData={currAcc.tempData || tempData}
+              setTempData={setTempData}
+            />
           </div>
           <div className="create-list">
             <CreateList setTempData={setTempData} months={months} />

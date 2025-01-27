@@ -88,7 +88,6 @@ const CreateList = ({ setTempData, months }) => {
 
     if (isValid(selectedCategory, amount)) {
       setTempData((d) => [...d, tempData]);
-
       setSelectedCategory("");
       setAmount("");
       setNote("");

@@ -16,7 +16,7 @@ function SignUp({ setData }) {
     name: name,
     password: password,
     amount: +amount,
-    data: {},
+    tempData: [],
   };
 
   const updateData = function () {
