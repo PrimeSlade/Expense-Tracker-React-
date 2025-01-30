@@ -21,10 +21,8 @@ import {
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Body({ setData, isLogin, setCurrAcc }) {
+function Body({ isLogin, setCurrAcc }) {
   const { currAcc } = useContext(CurrAccContext);
-  console.log("currACc");
-  console.log(currAcc);
 
   //for amount
   const [amount, setAmount] = useState("0");
@@ -83,10 +81,17 @@ function Body({ setData, isLogin, setCurrAcc }) {
               date={date}
               tempData={currAcc.tempData || tempData}
               setTempData={setTempData}
+              currAcc={currAcc}
+              setCurrAcc={setCurrAcc}
             />
           </div>
           <div className="create-list">
-            <CreateList setTempData={setTempData} months={months} />
+            <CreateList
+              setTempData={setTempData}
+              months={months}
+              currAcc={currAcc}
+              setCurrAcc={setCurrAcc}
+            />
           </div>
         </div>
       </div>

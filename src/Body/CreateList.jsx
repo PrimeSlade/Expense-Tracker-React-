@@ -21,9 +21,6 @@ import {
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
 const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
-  //will render when mounts
-  const [amount, setAmount] = useState(currAcc.amount || 0);
-
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [inputDate, setInputDate] = useState("");
@@ -31,10 +28,6 @@ const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
   const [note, setNote] = useState("");
   const [isClicked, setIsClicked] = useState(false);
   const inputRef = useRef(null);
-
-  useEffect(() => {
-    setCurrAcc((acc) => ({ ...acc, amount }));
-  }, [amount]);
 
   // List of 15 essential categories
   const categories = [
@@ -73,6 +66,11 @@ const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
     faEllipsisH,
   ];
 
+  const amountAndCateRest = function () {
+    setSelectedCategory("");
+    setInputAmount("");
+  };
+
   const getTime = () => {
     const sp = inputDate.split("-");
     const tempMont = parseInt(sp[1], 10);
@@ -89,22 +87,29 @@ const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
   };
 
   const click = function () {
-    const isValid = (...e) => e.every((e) => e !== "");
+    const isValid = (...e) => e.every((e) => e != "");
 
-    if (isValid(selectedCategory, amount)) {
-      setTempData((d) => [...d, tempData]);
-      setAmount(amount - Math.abs(inputAmount));
+    if (isValid(selectedCategory, inputAmount)) {
+      const cost = currAcc.amount - Math.abs(inputAmount);
+      if (cost > 0) {
+        setTempData((d) => [...d, tempData]);
+        setCurrAcc((acc) => ({ ...acc, amount: cost }));
+      } else {
+        alert("Amount is 0");
+      }
 
-      setSelectedCategory("");
-      setInputAmount("");
+      amountAndCateRest();
       setNote("");
 
       setIsClicked((s) => !s);
     } else {
       alert("You need to select category and amount");
+      amountAndCateRest();
       inputRef.current.focus();
     }
   };
+
+  console.log(currAcc);
 
   // Handle category selection
 

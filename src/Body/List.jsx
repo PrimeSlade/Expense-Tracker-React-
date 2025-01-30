@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./List.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const List = ({ date, tempData, setTempData }) => {
+const List = ({ date, tempData, setTempData, currAcc, setCurrAcc }) => {
   const [activeId, setActiveId] = useState();
 
   const toggleNote = function (e) {
@@ -13,6 +13,10 @@ const List = ({ date, tempData, setTempData }) => {
   };
 
   const deleteList = function (index) {
+    const deletedItem = currAcc.tempData[index];
+
+    setCurrAcc((acc) => ({ ...acc, amount: acc.amount + deletedItem.cost }));
+
     const selected = tempData.filter((_, i) => i !== index);
     setTempData(selected);
   };

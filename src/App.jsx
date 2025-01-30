@@ -10,7 +10,9 @@ export const CurrAccContext = createContext();
 
 function App() {
   // Main data
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([
+    { amount: 1000, name: "Slade", password: "lolsai662", tempData: [] },
+  ]);
 
   //is login
   const [isLogin, setIsLogin] = useState(false);
@@ -46,7 +48,7 @@ function App() {
               />
               <div className="budget-container">
                 <h1>My budget</h1>
-                <h1>${currAcc.amount || 0}</h1>
+                <h1>{currAcc.amount || 0}฿</h1>
               </div>
 
               <Body

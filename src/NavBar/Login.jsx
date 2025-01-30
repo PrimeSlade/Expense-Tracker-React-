@@ -17,6 +17,7 @@ const Login = ({ data, setCurrAcc, setIsLogin }) => {
 
   const updateName = function (e) {
     setName(e.target.value);
+
   };
 
   const updatePssword = function (e) {
