@@ -20,12 +20,14 @@ import {
   faSmile,
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
+import { use } from "react";
+import MonthList from "./Body/MonthList";
 
 function Body({ isLogin, setCurrAcc }) {
   const { currAcc } = useContext(CurrAccContext);
 
-  //for amount
-  const [amount, setAmount] = useState("0");
+  //for month and today btn
+  const [isMonth, setIsMonth] = useState(false);
 
   //for date
   const [date, setDate] = useState("");
@@ -67,33 +69,62 @@ function Body({ isLogin, setCurrAcc }) {
     setDate(formatDate);
   }, []);
 
+  const change = function (e) {
+    if (e.target.classList.contains("btn-Today")) {
+      setIsMonth(false);
+    } else {
+      setIsMonth(true);
+    }
+  };
+
   return (
     <>
       <div className="main-container-body">
         <div className="btn-container">
-          <button className="btn- btn-Today">Today</button>
-          <button className="btn- btn-Month">Month</button>
+          <button className="btn- btn-Today" onClick={change}>
+            Today
+          </button>
+          <button className="btn- btn-Month" onClick={change}>
+            Month
+          </button>
         </div>
-        <div className="today-container">
-          <div className="lists">
-            {/* List */}
-            <List
-              date={date}
-              tempData={currAcc.tempData || tempData}
-              setTempData={setTempData}
-              currAcc={currAcc}
-              setCurrAcc={setCurrAcc}
-            />
-          </div>
-          <div className="create-list">
-            <CreateList
-              setTempData={setTempData}
-              months={months}
-              currAcc={currAcc}
-              setCurrAcc={setCurrAcc}
-            />
-          </div>
-        </div>
+        {!isMonth ? (
+          <>
+            <div className="today-container">
+              <div className="lists">
+                <List
+                  date={date}
+                  tempData={currAcc.tempData || tempData}
+                  setTempData={setTempData}
+                  currAcc={currAcc}
+                  setCurrAcc={setCurrAcc}
+                />
+              </div>
+              <div className="create-list">
+                <CreateList
+                  months={months}
+                  setTempData={setTempData}
+                  currAcc={currAcc}
+                  setCurrAcc={setCurrAcc}
+                />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="today-container">
+              <div className="lists">
+                <MonthList
+                  tempData={currAcc.tempData || tempData}
+                  months={months}
+                />
+              </div>
+              <div className="create-list">
+                <MonthList tempData={currAcc.tempData || tempData} />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

@@ -46,7 +46,6 @@
     color: orange; /* Text color */
     text-shadow: 0 0 2px orange;
     padding-left: 40px;
-    
   }
 
   .amount-text:focus{

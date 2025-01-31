@@ -20,7 +20,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
-const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
+const CreateList = ({ setTempData, currAcc, setCurrAcc }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [inputDate, setInputDate] = useState("");
@@ -74,7 +74,7 @@ const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
   const getTime = () => {
     const sp = inputDate.split("-");
     const tempMont = parseInt(sp[1], 10);
-    return `${sp[2]} ${months[tempMont]} ${sp[0]}`;
+    return `${sp[2]}-${tempMont}-${sp[0]}`;
   };
 
   const tempData = {
@@ -91,7 +91,7 @@ const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
 
     if (isValid(selectedCategory, inputAmount)) {
       const cost = currAcc.amount - Math.abs(inputAmount);
-      if (cost > 0) {
+      if (cost >= 0) {
         setTempData((d) => [...d, tempData]);
         setCurrAcc((acc) => ({ ...acc, amount: cost }));
       } else {
@@ -108,8 +108,6 @@ const CreateList = ({ setTempData, months, currAcc, setCurrAcc }) => {
       inputRef.current.focus();
     }
   };
-
-  console.log(currAcc);
 
   // Handle category selection
 

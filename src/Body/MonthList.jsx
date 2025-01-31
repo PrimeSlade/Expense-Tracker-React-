@@ -1,9 +1,32 @@
-import React, { useState } from "react";
-import "./List.css";
+import React, { useState, useId, useEffect } from "react";
+import "./MonthList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const List = ({ date, tempData, setTempData, currAcc, setCurrAcc }) => {
+const MonthList = ({ tempData, months }) => {
   const [activeId, setActiveId] = useState();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const sorted = tempData
+      .map((data) => {
+        const time = data.time.split("-"); // Assuming format: "DD-MM-YYYY"
+        return {
+          ...data, // Keep other properties intact
+          date: Number(time[0]),
+          month: Number(time[1]),
+          year: Number(time[2]),
+        };
+      })
+      .sort((a, b) => {
+        const yearDiff = b.year - a.year;
+        if (yearDiff !== 0) return yearDiff;
+        const monthDiff = b.month - a.month;
+        if (monthDiff !== 0) return monthDiff;
+        return b.date - a.date;
+      });
+
+    setData(sorted);
+  }, [tempData]);
 
   const toggleNote = function (e) {
     const clickedId = e.currentTarget.id;
@@ -18,7 +41,7 @@ const List = ({ date, tempData, setTempData, currAcc, setCurrAcc }) => {
     setCurrAcc((acc) => ({ ...acc, amount: acc.amount + deletedItem.cost }));
 
     const selected = tempData.filter((_, i) => i !== index);
-    setTempData(selected);
+    setTempData(selected); //will be back VERY IMPORTANT
   };
 
   const renderData = () => {
@@ -26,7 +49,7 @@ const List = ({ date, tempData, setTempData, currAcc, setCurrAcc }) => {
       return <h2 className="info-text">No data available</h2>;
     }
 
-    return tempData.map((item, index) => (
+    return data.map((item, index) => (
       <div key={index} id={`${item.id}-${index}`} onClick={toggleNote}>
         <div className="item--container">
           <h2>
@@ -55,14 +78,19 @@ const List = ({ date, tempData, setTempData, currAcc, setCurrAcc }) => {
     ));
   };
 
+  const set = function (e) {
+    setInputYear(e.currentTarget.value);
+  };
+
+  console.log(data);
+
   return (
     <>
-      <h2 className="date">{date}</h2>
-      <div className="list--container">
+      <div className="list--container height">
         <div>{renderData()}</div>
       </div>
     </>
   );
 };
 
-export default List;
+export default MonthList;

@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import Body from "./Body";
 import SignUp from "./NavBar/SignUp";
 import Login from "./NavBar/Login";
+import DisplayAmount from "./Body/DisplayAmount";
 
 export const CurrAccContext = createContext();
 
@@ -46,11 +47,7 @@ function App() {
                 setCurrAcc={setCurrAcc}
                 setIsLogin={setIsLogin}
               />
-              <div className="budget-container">
-                <h1>My budget</h1>
-                <h1>{currAcc.amount || 0}฿</h1>
-              </div>
-
+              <DisplayAmount currAcc={currAcc} setCurrAcc={setCurrAcc} />
               <Body
                 setData={setData}
                 isLogin={isLogin}
