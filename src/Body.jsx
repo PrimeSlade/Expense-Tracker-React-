@@ -20,7 +20,6 @@ import {
   faSmile,
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
-import { use } from "react";
 import MonthList from "./Body/MonthList";
 
 function Body({ isLogin, setCurrAcc }) {
@@ -81,10 +80,16 @@ function Body({ isLogin, setCurrAcc }) {
     <>
       <div className="main-container-body">
         <div className="btn-container">
-          <button className="btn- btn-Today" onClick={change}>
+          <button
+            className={`btn- btn-Today ${!isMonth ? "active" : "in-active"}`}
+            onClick={change}
+          >
             Today
           </button>
-          <button className="btn- btn-Month" onClick={change}>
+          <button
+            className={`btn- btn-Month ${isMonth ? "active" : "in-active"}`}
+            onClick={change}
+          >
             Month
           </button>
         </div>
@@ -116,12 +121,13 @@ function Body({ isLogin, setCurrAcc }) {
               <div className="lists">
                 <MonthList
                   tempData={currAcc.tempData || tempData}
+                  setTempData={setTempData}
                   months={months}
+                  setCurrAcc={setCurrAcc}
+                  currAcc={currAcc}
                 />
               </div>
-              <div className="create-list">
-                <MonthList tempData={currAcc.tempData || tempData} />
-              </div>
+              <div className="create-list"></div>
             </div>
           </>
         )}

@@ -66,3 +66,13 @@ body {
     margin-left: 20px;
     width: 100rem;
 }
+
+.active{
+    background-color: #0A0A3A ;
+    color: white;
+}
+
+.in-active{
+    background-color: white;
+    color: #0A0A3A;
+}

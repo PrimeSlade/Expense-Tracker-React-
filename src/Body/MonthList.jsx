@@ -2,7 +2,7 @@ import React, { useState, useId, useEffect } from "react";
 import "./MonthList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MonthList = ({ tempData, months }) => {
+const MonthList = ({ tempData, months, setTempData, setCurrAcc, currAcc }) => {
   const [activeId, setActiveId] = useState();
   const [data, setData] = useState([]);
 
@@ -36,12 +36,12 @@ const MonthList = ({ tempData, months }) => {
   };
 
   const deleteList = function (index) {
-    const deletedItem = currAcc.tempData[index];
+    const deletedItem = data[index];
 
     setCurrAcc((acc) => ({ ...acc, amount: acc.amount + deletedItem.cost }));
 
-    const selected = tempData.filter((_, i) => i !== index);
-    setTempData(selected); //will be back VERY IMPORTANT
+    const selected = data.filter((_, i) => i !== index);
+    setTempData(selected);
   };
 
   const renderData = () => {
@@ -49,40 +49,48 @@ const MonthList = ({ tempData, months }) => {
       return <h2 className="info-text">No data available</h2>;
     }
 
-    return data.map((item, index) => (
-      <div key={index} id={`${item.id}-${index}`} onClick={toggleNote}>
-        <div className="item--container">
-          <h2>
-            <FontAwesomeIcon icon={item.icon} />
-            <span className="items">{item.catagory}</span>
-          </h2>
+    let lastDate = "";
 
-          <h2 className="item-cost">{item.cost}</h2>
+    return data.map((item, index) => {
+      const tempDate = `${months[item.month - 1]} ${item.year}`;
+      const showDate = tempDate !== lastDate;
+
+      if (showDate) {
+        lastDate = tempDate;
+      }
+
+      return (
+        <div key={index} id={`${item.id}-${index}`} onClick={toggleNote}>
+          {showDate && <h2 className="display-date">{tempDate}</h2>}
+          <div className="item--container">
+            <h2>
+              <FontAwesomeIcon icon={item.icon} />
+              <span className="items">{item.catagory}</span>
+            </h2>
+            <h2 className="item-cost">{item.cost}</h2>
+          </div>
+          {activeId === `${item.id}-${index}` && (
+            <>
+              <h3 className="display-date-details">
+                Date: {item.date} {tempDate}
+              </h3>
+
+              <div className="item-note">Note : {item.note}</div>
+              <button
+                className="delete-btn-list"
+                onClick={() => {
+                  deleteList(index);
+                }}
+              >
+                Delete List
+              </button>
+            </>
+          )}
+          <hr className="hr-line" />
         </div>
-        {activeId === `${item.id}-${index}` && (
-          // Only show note for the active item
-          <>
-            <div className="item-note">Note : {item.note}</div>
-            <button
-              className="delete-btn-list"
-              onClick={() => {
-                deleteList(index);
-              }}
-            >
-              Delete List
-            </button>
-          </>
-        )}
-        <hr className="hr-line" />
-      </div>
-    ));
+      );
+    });
   };
-
-  const set = function (e) {
-    setInputYear(e.currentTarget.value);
-  };
-
-  console.log(data);
 
   return (
     <>

@@ -1,3 +1,13 @@
 .height{
     height: 600px;
 }
+
+.display-date{
+   text-align: center;
+   margin-top: 40px;
+}
+
+.display-date-details{
+    margin-left: 100px;
+    color: red;
+}
