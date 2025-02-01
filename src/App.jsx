@@ -1,24 +1,36 @@
 import "./App.css";
-import React, { useEffect, useState, useContext, createContext } from "react";
+import React, { useEffect, useState, useRef, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Body from "./Body";
 import SignUp from "./NavBar/SignUp";
 import Login from "./NavBar/Login";
 import DisplayAmount from "./Body/DisplayAmount";
+import Footer from "./Footer";
 
 export const CurrAccContext = createContext();
 
 function App() {
   // Main data
-  const [data, setData] = useState([
-    { amount: 1000, name: "Slade", password: "lolsai662", tempData: [] },
-  ]);
+  const [data, setData] = useState(() => {
+    const storedData = JSON.parse(localStorage.getItem("users"));
+    return storedData || [{}];
+  });
+
+  const footerRef = useRef(null);
+
+  const reset = function () {
+    localStorage.clear();
+  };
 
   //is login
   const [isLogin, setIsLogin] = useState(false);
 
   const [currAcc, setCurrAcc] = useState({});
+
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(data));
+  }, [data]);
 
   useEffect(() => {
     if (!currAcc.name) return;
@@ -46,6 +58,7 @@ function App() {
                 currAcc={currAcc}
                 setCurrAcc={setCurrAcc}
                 setIsLogin={setIsLogin}
+                footerRef={footerRef}
               />
               <DisplayAmount currAcc={currAcc} setCurrAcc={setCurrAcc} />
               <Body
@@ -54,6 +67,7 @@ function App() {
                 setCurrAcc={setCurrAcc}
                 currAcc={currAcc}
               />
+              <Footer footerRef={footerRef} />
             </>
           }
         />

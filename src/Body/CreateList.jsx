@@ -94,6 +94,8 @@ const CreateList = ({ setTempData, currAcc, setCurrAcc }) => {
       if (cost >= 0) {
         setTempData((d) => [...d, tempData]);
         setCurrAcc((acc) => ({ ...acc, amount: cost }));
+      } else if (cost < 0) {
+        alert("Amount must be postive");
       } else {
         alert("Amount is 0");
       }

@@ -20,7 +20,9 @@ import {
   faSmile,
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
+
 import MonthList from "./Body/MonthList";
+import DisplayStatistic from "./Body/DisplayStatistic";
 
 function Body({ isLogin, setCurrAcc }) {
   const { currAcc } = useContext(CurrAccContext);
@@ -127,7 +129,9 @@ function Body({ isLogin, setCurrAcc }) {
                   currAcc={currAcc}
                 />
               </div>
-              <div className="create-list"></div>
+              <div className="create-list">
+                <DisplayStatistic currAcc={currAcc} />
+              </div>
             </div>
           </>
         )}

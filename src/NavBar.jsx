@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function NavBar({ currAcc, setCurrAcc, setIsLogin }) {
+function NavBar({ currAcc, setCurrAcc, setIsLogin, footerRef }) {
   const [isShow, setIsShow] = useState(false);
 
   //First Name
@@ -24,19 +24,30 @@ function NavBar({ currAcc, setCurrAcc, setIsLogin }) {
     setCurrAcc({});
     setIsLogin(false);
     show();
+    window.location.reload();
+  };
+
+  const scrollIntoFooter = function () {
+    footerRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="main-container">
       <span className="container-acc">
+        <h2 className="welcome-text" onClick={scrollIntoFooter}>
+          My GitHub
+        </h2>
+
         {currAcc.name === undefined ? (
           <>
-            <Link to="/login">
-              <button className="btn btn-login">Login</button>
-            </Link>
-            <Link to="/signup">
-              <button className="btn btn-sign-up">Sign Up</button>
-            </Link>
+            <div>
+              <Link to="/login">
+                <button className="btn btn-login">Login</button>
+              </Link>
+              <Link to="/signup">
+                <button className="btn btn-sign-up">Sign Up</button>
+              </Link>
+            </div>
           </>
         ) : (
           <>
@@ -45,6 +56,7 @@ function NavBar({ currAcc, setCurrAcc, setIsLogin }) {
             </h2>
           </>
         )}
+
         {isShow && (
           <button className="btn-log-out" onClick={logOut}>
             Log out
