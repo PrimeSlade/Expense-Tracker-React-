@@ -1,0 +1,13 @@
+#frontend\.gitignore
+# Node modules for frontend
+node_modules/
+
+# Vite build files
+/dist/
+
+# Ignore environment files for frontend
+.env
+
+# Ignore IDE/editor files
+.vscode/
+.idea/

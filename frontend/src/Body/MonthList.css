@@ -1,0 +1,14 @@
+/* frontend\src\Body\MonthList.css */
+.height {
+  height: 500px;
+}
+
+.display-date {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.display-date-details {
+  margin-left: 100px;
+  color: red;
+}
