@@ -44,7 +44,6 @@ This is a full-stack expense tracker application built with React (frontend) and
 
 Here’s the complete corrected Markdown:
 
-````markdown
 ### 3. **Set up environment variables**
 
 - Create a `.env` file in the `backend` directory with the following content:
@@ -54,7 +53,7 @@ Here’s the complete corrected Markdown:
   JWT_SECRET=<your-secret-key>
   PORT=5000
   ```
-````
+
 
 - Replace `<your-mongodb-connection-string>` with your actual MongoDB connection string.
 - Replace `<your-secret-key>` with a secure random string for JWT signing.
