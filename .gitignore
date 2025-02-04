@@ -1,5 +1,6 @@
+#.gitignore
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,18 +8,31 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependency directories
+node_modules/
 
-# Editor directories and files
-.vscode/*
+# Build directories
+dist/
+dist-ssr/
+
+# Local environment and configuration files
+*.local
+.env
+
+# Editor and OS-specific files
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# put this here so each part can have their own .gitignore
+frontend/node_modules/
+frontend/dist/
+backend/node_modules/
+backend/dist/

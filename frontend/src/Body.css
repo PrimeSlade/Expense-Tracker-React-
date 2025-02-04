@@ -1,0 +1,77 @@
+/* frontend\src\Body.css */
+body {
+  margin: 0;
+}
+
+.main-container-body {
+  padding: 0;
+  background-color: white;
+  border-radius: 60px 60px 0 0;
+  height: 700px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 10rem;
+  padding-top: 2rem;
+}
+
+.btn-Today,
+.btn-Month {
+  border: 1px solid #0a0a3a;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-Today {
+  border-radius: 100px 0 0 100px;
+  background-color: #0a0a3a;
+  color: white;
+}
+
+.btn-Today:hover {
+  background-color: white;
+  color: #0a0a3a;
+}
+
+.btn-Month {
+  border-radius: 0 100px 100px 0;
+  background-color: white;
+  color: #0a0a3a;
+}
+
+.btn-Month:hover {
+  background-color: #0a0a3a;
+  color: white;
+}
+
+.today-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.lists {
+  margin-right: 20px;
+  width: 100rem;
+}
+
+.create-list {
+  margin-left: 20px;
+  width: 100rem;
+}
+
+.active {
+  background-color: #0a0a3a;
+  color: white;
+}
+
+.in-active {
+  background-color: white;
+  color: #0a0a3a;
+}

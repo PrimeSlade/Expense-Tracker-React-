@@ -1,0 +1,14 @@
+
+#backend\.gitignore
+# Node modules for backend
+node_modules/
+
+# Logs for the backend
+*.log
+
+# Ignore environment files for backend
+.env
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
